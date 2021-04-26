@@ -1,13 +1,10 @@
-FROM node:10-slim
+FROM node:14-slim
 
-LABEL MAINTAINER https://github.com/DIYgod/RSSHub/
-
-
-ENV NODE_ENV production
-ENV TZ Asia/Shanghai
-
-ARG USE_CHINA_NPM_REGISTRY=0;
-ARG PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1;
+LABEL \
+    "MAINTAINER"="https://github.com/DIYgod/RSSHub/" \
+    "traefik.enable"="true" \
+    "traefik.http.routers.rsshub.rule"="Host(`rsshub.royxiang.me`)" \
+    "traefik.http.services.rsshub.loadbalancer.server.port"="1200"
 
 RUN ln -sf /bin/bash /bin/sh
 
@@ -18,25 +15,7 @@ WORKDIR /app
 
 COPY package.json tools/clean-nm.sh /app/
 
-RUN if [ "$USE_CHINA_NPM_REGISTRY" = 1 ]; then \
-  echo 'use npm mirror'; npm config set registry https://registry.npm.taobao.org; \
-  fi;
-
-RUN if [ "$PUPPETEER_SKIP_CHROMIUM_DOWNLOAD" = 0 ]; then \
-  apt-get install -y wget --no-install-recommends \
-  && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-  && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-  && apt-get update \
-  && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont \
-  --no-install-recommends \
-  && rm -rf /var/lib/apt/lists/* \
-  && apt-get purge --auto-remove -y wget\
-  && rm -rf /src/*.deb \
-  && npm install --production && sh ./clean-nm.sh;\
-  else \
-  export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true && \
-  npm install --production && sh ./clean-nm.sh;\
-  fi;
+RUN npm install --production && sh ./clean-nm.sh
 
 COPY . /app
 
