@@ -16,5 +16,7 @@ tmp
 coverage
 .env
 yarn.lock
+app-minimal/
 .envrc
 .now
+.vercel
