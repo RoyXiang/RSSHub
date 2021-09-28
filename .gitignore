@@ -20,3 +20,5 @@ app-minimal/
 .envrc
 .now
 .vercel
+
+assets/build/
