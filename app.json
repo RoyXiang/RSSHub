@@ -29,5 +29,10 @@
         "YOUTUBE_KEY": {
             "required": false
         }
+    },
+    "formation": {
+        "web": {
+            "quantity": 1
+        }
     }
 }
