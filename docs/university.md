@@ -212,6 +212,18 @@ pageClass: routes
 
 </Route>
 
+## 北京师范大学
+
+### 经济与工商管理学院
+
+<Route author="nczitzk" example="/bnu/bs" path="/bnu/bs/:category?" :paramsDesc="['分类，见下表，默认为学院新闻']">
+
+| 学院新闻 | 通知公告 | 学术成果 | 学术讲座 | 教师观点 | 人才招聘 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| xw       | zytzyyg  | xzcg     | xzjz     | xz       | bshzs    |
+
+</Route>
+
 ## 北京物资学院
 
 ### 通知公告
@@ -643,6 +655,22 @@ xskb1 对应 <http://www.auto.uestc.edu.cn/index/xskb1.htm>
 
 </Route>
 
+## 对外经济贸易大学
+
+### 人力资源处
+
+<Route author="nczitzk" example="/uibe/hr" path="/uibe/hr/:category?/:type?" :paramsDesc="['分类，可在对应页 URL 中找到，默认为通知公告', '类型，可在对应页 URL 中找到，默认为空']">
+
+::: tip 提示
+
+如 [通知公告](http://hr.uibe.edu.cn/tzgg) 的 URL 为 <http://hr.uibe.edu.cn/tzgg>，其路由为 [`/uibe/hr/tzgg`](https://rsshub.app/uibe/hr/tzgg)
+
+如 [教师招聘](http://hr.uibe.edu.cn/jszp) 中的 [招聘信息](http://hr.uibe.edu.cn/jszp/zpxx) 的 URL 为 <http://hr.uibe.edu.cn/jszp/zpxx>，其路由为 [`/uibe/hr/jszp/zpxx`](https://rsshub.app/uibe/jszp/zpxx)
+
+:::
+
+</Route>
+
 ## 福州大学
 
 ### 教务处通知
@@ -993,6 +1021,16 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 | 全部 | 选课   | 考试 | 实践     | 交流          | 教师    | 信息 |
 | ---- | ------ | ---- | -------- | ------------- | ------- | ---- |
 | all  | course | exam | practice | communication | teacher | info |
+
+</Route>
+
+### 教务处学院通知
+
+<Route author="KeNorizon Rongronggg9" example="/scut/jwc/school/all" path="/scut/jwc/school/:category?" :paramsDesc="['通知分类, 默认为 `all`']">
+
+| 全部 | 选课   | 考试 | 信息 |
+| ---- | ------ | ---- | ---- |
+| all  | course | exam | info |
 
 </Route>
 
@@ -2167,6 +2205,15 @@ type 列表：
 | -------- | ---------- | -------- | -------- | ---------- | -------- |
 | 1        | 2          | 3        | 4        | 5          | 6        |
 
+</Route>
+
+## 云南师范大学
+
+### 继续教育学院
+
+#### 新闻
+
+<Route author="SettingDust" example="/ynnu/edu/news" path="/ynnu/edu/news" >
 </Route>
 
 ## 浙江大学
