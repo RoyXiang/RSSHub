@@ -58,6 +58,12 @@ pageClass: routes
 
 <Route author="nczitzk" example="/deeplearningai/thebatch" path="/deeplearningai/thebatch"/>
 
+## Distill
+
+### Latest
+
+<Route author="nczitzk" example="/distill" path="/distill"/>
+
 ## Dockone
 
 ### 周报
@@ -113,7 +119,7 @@ GitHub 官方也提供了一些 RSS:
 
 ### Trending
 
-<Route author="DIYgod" example="/github/trending/daily/javascript" path="/github/trending/:since/:language?" :paramsDesc="['时间跨度, 可在 [Trending 页](https://github.com/trending/javascript?since=monthly) URL 中找到, 可选 daily weekly monthly', '语言, 可在 [Trending 页](https://github.com/trending/javascript?since=monthly) URL 中找到']" radar="1" rssbud="1"/>
+<Route author="DIYgod" example="/github/trending/daily/javascript/zh" path="/github/trending/:since/:language?/:spoken_language?" :paramsDesc="['时间跨度, 可在 [Trending 页](https://github.com/trending/javascript?since=monthly&spoken_language_code=zh) URL 中找到, 可选 daily weekly monthly', '语言, 可在 [Trending 页](https://github.com/trending/javascript?since=monthly&spoken_language_code=zh) URL 中找到', '自然语言, 可在 [Trending 页](https://github.com/trending/javascript?since=monthly&spoken_language_code=zh) URL 中找到']" radar="1" rssbud="1"/>
 
 ### Topics
 
@@ -449,6 +455,16 @@ GitHub 官方也提供了一些 RSS:
 | week             | activity | knowledge | news | job  |
 
 </Route>
+
+## 安全内参
+
+### 分类
+
+<Route author="XinRoom" example="/secrss/category/产业趋势" path="/secrss/category/:category"/>
+
+### 作者
+
+<Route author="XinRoom" example="/secrss/author/网络安全威胁和漏洞信息共享平台" path="/secrss/author/:author"/>
 
 ## 安全文摘
 

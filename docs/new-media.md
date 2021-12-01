@@ -168,6 +168,10 @@ pageClass: routes
 
 <Route author="kt286 HaitianLiu" example="/cnbeta" path="/cnbeta"/>
 
+### 主题
+
+<Route author="cczhong11" example="/cnbeta/topic/453" path="/cnbeta/topic/:topic_id"/>
+
 ## Common App
 
 ### Blog
@@ -307,6 +311,11 @@ pageClass: routes
 </Route>
 
 ## Fashion Network
+
+### Headline
+
+<Route author="nczitzk" example="/fashionnetwork/headline" path="/fashionnetwork/headline/:country?" :paramsDesc="['国家，见下表，默认为 `ww`']">
+</Route>
 
 ### News
 
@@ -661,6 +670,17 @@ IPFS 网关有可能失效，那时候换成其他网关。
 
 <Route author="EsuRt queensferryme" example="/mittrchina/hot" path="/mittrchina/:type" :paramsDesc="['类型 type，可以是 index（首页资讯）或 hot（本周热榜）']"/>
 
+## MyGoPen
+
+### 分類
+
+<Route author="nczitzk" example="/mygopen" path="/mygopen/:label?" :paramsDesc="['分類，见下表，默认为首页']">
+
+| 謠言 | 詐騙 | 真實資訊 | 教學 |
+| ---- | ---- | -------- | ---- |
+
+</Route>
+
 ## Nautilus
 
 ### 话题
@@ -694,6 +714,24 @@ IPFS 网关有可能失效，那时候换成其他网关。
 </Route>
 
 ## Odaily 星球日报
+
+### 快讯
+
+<Route author="ncziztk" example="/odaily/newsflash" path="/odaily/newsflash"/>
+
+### 文章
+
+<Route author="ncziztk" example="/odaily" path="/odaily/:id?" :paramsDesc="['id，见下表，默认为新品']">
+
+| 新品 | DeFi | NFT | 存储 | 波卡 | 行情 | 活动 |
+| ---- | ---- | --- | ---- | ---- | ---- | ---- |
+| 333  | 331  | 334 | 332  | 330  | 297  | 296  |
+
+</Route>
+
+### 用户文章
+
+<Route author="ncziztk" example="/odaily/user/2147486902" path="/odaily/user/:id" :paramsDesc="['用户 id，可在用户页地址栏中找到']"/>
 
 ### 活动
 
@@ -914,6 +952,12 @@ IPFS 网关有可能失效，那时候换成其他网关。
     -   Soomal 论坛与留言系统的更新：<http://www.soomal.com/bbs/101.rss.xml>
 
 </Route>
+
+## swissinfo
+
+### 分类
+
+<Route author="nczitzk" example="/swissinfo/chi/latest-news" path="/swissinfo/:language?/:category?" :paramsDesc="['语言，默认为 eng', '分类，默认为 Latest News']"/>
 
 ## TANC 艺术新闻
 
@@ -1236,6 +1280,16 @@ Supported sub-sites:
 
 <Route author="DIYgod" example="/chouti/top/24" path="/chouti/top/:hour?" :paramsDesc="['排行榜周期，可选 24 72 168 三种，默认 24']" />
 
+## 创业邦
+
+### 作者
+
+<Route author="xyqfer" example="/cyzone/author/1225562" path="/cyzone/author/:id" :paramsDesc="['作者 id']"/>
+
+### 标签
+
+<Route author="LogicJake" example="/cyzone/label/创业邦周报" path="/cyzone/label/:name" :paramsDesc="['标签名称']"/>
+
 ## 創新拿鐵
 
 ### 分类
@@ -1247,16 +1301,6 @@ Supported sub-sites:
 |      | quote    | analysis | trend    |
 
 </Route>
-
-## 创业邦
-
-### 作者
-
-<Route author="xyqfer" example="/cyzone/author/1225562" path="/cyzone/author/:id" :paramsDesc="['作者 id']"/>
-
-### 标签
-
-<Route author="LogicJake" example="/cyzone/label/创业邦周报" path="/cyzone/label/:name" :paramsDesc="['标签名称']"/>
 
 ## 得到
 
@@ -1833,7 +1877,53 @@ column 为 third 时可选的 category:
 
 </Route>
 
-## 快科技（原驱动之家）
+## 快科技
+
+### 新闻
+
+<Route author="nczitzk" example="/mydrivers" path="/mydrivers/:type?/:id?" :paramsDesc="['类型，见下表，默认为最新', '编号，可在对应页面地址栏中找到']">
+
+::: tip 提示
+
+使用 **类型** 表中的两个参数时，编号应留空，如：**最新** 为 [`/mydrivers/new`](https://rsshub.app/mydrivers/new)
+
+使用 **编号** 表中的参数不应遗漏对应类型参数，如 **电脑** 为 [`/mydrivers/bcid/801`](https://rsshub.app/mydrivers/bcid/801)
+
+:::
+
+类型
+
+| 最新 | 热门 |
+| ---- | ---- |
+| new  | hot  |
+
+编号
+
+| 最新   | 最热   | 电脑     | 手机     | 汽车     | 业界     |
+| ------ | ------ | -------- | -------- | -------- | -------- |
+| ac/new | ac/hot | bcid/801 | bcid/802 | bcid/807 | bcid/803 |
+
+| 科学     | 排行     | 评测     | 安卓     | 苹果    | CPU    |
+| -------- | -------- | -------- | -------- | ------- | ------ |
+| tid/1000 | tid/1001 | tid/1002 | icid/121 | cid/201 | cid/13 |
+
+| 显卡   | 一图     | 阿里     | 微软    | 百度    | 影视     |
+| ------ | -------- | -------- | ------- | ------- | -------- |
+| cid/12 | tid/1003 | icid/270 | icid/90 | icid/67 | bcid/809 |
+
+| 游戏     | 路由器 | PS5       | Xbox     | 华为     | OPPO     |
+| -------- | ------ | --------- | -------- | -------- | -------- |
+| bcid/806 | cid/38 | icid/6950 | icid/194 | icid/136 | icid/148 |
+
+| 小米      | VIVO     | 三星     | 魅族     | 一加     | 特斯拉    |
+| --------- | -------- | -------- | -------- | -------- | --------- |
+| icid/9355 | icid/288 | icid/154 | icid/140 | icid/385 | icid/1193 |
+
+| 比亚迪   | 小鹏      | 蔚来      | 理想       | 奔驰     | 宝马     | 大众     |
+| -------- | --------- | --------- | ---------- | -------- | -------- | -------- |
+| icid/770 | icid/7259 | icid/7318 | icid/12947 | icid/429 | icid/461 | icid/481 |
+
+</Route>
 
 ### 最新新闻
 
@@ -2166,6 +2256,12 @@ column 为 third 时可选的 category:
 
 </Route>
 
+## 趨勢科技防詐達人
+
+### 最新詐騙情報
+
+<Route author="nczitzk" example="/getdr" path="/getdr"/>
+
 ## 趣头条
 
 ### 分类
@@ -2177,6 +2273,24 @@ column 为 third 时可选的 category:
 | 255  | 1    | 6    | 42   | 5    | 4    | 7    | ... |
 
 更多的 cid 可通过访问[官网](http://home.qutoutiao.net)切换分类，观察 url 获得。
+
+</Route>
+
+## 全民健康网
+
+<Route author="nczitzk" example="/qm120/news" path="/qm120/news/:category?" :paramsDesc="['分类，见下表，默认为健康焦点']">
+
+| 健康焦点 | 行业动态 | 医学前沿 | 法规动态 |
+| -------- | -------- | -------- | -------- |
+| jdxw     | hydt     | yxqy     | fgdt     |
+
+| 食品安全 | 医疗事故 | 医药会展 | 医药信息 |
+| -------- | -------- | -------- | -------- |
+| spaq     | ylsg     | yyhz     | yyxx     |
+
+| 新闻专题 | 行业新闻 |
+| -------- | -------- |
+| zhuanti  | xyxw     |
 
 </Route>
 
@@ -2269,6 +2383,22 @@ column 为 third 时可选的 category:
 ### 搜索
 
 <Route author="nczitzk" example="/ruancan/search/ColorOS" path="/ruancan/search/:keyword?" :paramsDesc="['关键字，默认为空']"/>
+
+## 上下游 News&Market
+
+### 分類
+
+<Route author="nczitzk" example="/newsmarket" path="/newsmarket/:category?" :paramsDesc="['分类，见下表，默认为首页']">
+
+| 時事。政策  | 食安        | 新知      | 愛地方       | 種好田       | 好吃。好玩    |
+| ----------- | ----------- | --------- | ------------ | ------------ | ------------- |
+| news-policy | food-safety | knowledge | country-life | good-farming | good-food-fun |
+
+| 食農教育       | 人物               | 漁業。畜牧           | 綠生活。國際        | 評論    |
+| -------------- | ------------------ | -------------------- | ------------------- | ------- |
+| food-education | people-and-history | raising-and-breeding | living-green-travel | opinion |
+
+</Route>
 
 ## 少数派 sspai
 
@@ -2592,6 +2722,16 @@ column 为 third 时可选的 category:
 
 </Route>
 
+### 人间
+
+<Route author="nczitzk" example="/netease/renjian/texie" path="/netease/renjian/:category?" :paramsDesc="['分类，见下表，默认为特写']">
+
+| 特写  | 记事  | 大写  | 好读  | 看客  |
+| ----- | ----- | ----- | ----- | ----- |
+| texie | jishi | daxie | haodu | kanke |
+
+</Route>
+
 ## 網路天文館
 
 ### 天象預報
@@ -2648,6 +2788,10 @@ column 为 third 时可选的 category:
 
 <Route author="tylinux" example="/wechat/feeds/MzIwMzAwMzQxNw==" path="/wechat/feeds/:id" :paramsDesc="['公众号 id, 打开 `https://wechat.privacyhide.com/`, 在选定公众号的订阅 URL 中找到 id, 不包含最后的 .xml']"/>
 
+### 公众号 (feeddd 来源)
+
+<Route author="TonyRL" example="/wechat/feeddd/6131e1441269c358aa0e2141" path="/wechat/feeddd/:id" :paramsDesc="['公众号 id, 打开 `https://feeddd.org/feeds` 或 `https://cdn.jsdelivr.net/gh/feeddd/feeds/feeds_all_rss.txt`, 在 URL 中找到 id']"/>
+
 ### 公众号栏目 (非推送 & 历史消息)
 
 <Route author="MisteryMonster" example="/wechat/mp/homepage/MzA3MDM3NjE5NQ==/16" path="/wechat/mp/homepage/:biz/:hid/:cid?" :paramsDesc="['公众号id', '分页id', '页内栏目']" radar="1" rssbud="1" anticrawler="1">
@@ -2691,6 +2835,12 @@ column 为 third 时可选的 category:
 |            | zhongguo | haiwai | tiyu | yule | keji | caijing |
 
 </Route>
+
+## 沃草
+
+### 文件列表
+
+<Route author="nczitzk" example="/watchout" path="/watchout"/>
 
 ## 无产者评论
 

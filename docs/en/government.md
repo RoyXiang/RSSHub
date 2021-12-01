@@ -16,6 +16,40 @@ pageClass: routes
 
 <RouteEn author="quinn-dev" example="/verfghbw/press" path="/verfghbw/press/:keyword?" :paramsDesc="['Keyword']"/>
 
+## Hong Kong Centre for Health Protection
+
+### Category
+
+<RouteEn author="nczitzk" example="/chp" path="/chp/:category?/:language?" :paramsDesc="['Category, see below, Important Topics by default', 'Language, see below, zh_tw by default']">
+
+Category
+
+| Important Topics | Press Releases   | Response Level | Periodicals & Publications | Health Notice |
+| ---------------- | ---------------- | -------------- | -------------------------- | ------------- |
+| important_ft     | press_data_index | ResponseLevel  | publication                | HealthAlert   |
+
+Language
+
+| English | 中文简体 | 中文繁體 |
+| ------- | -------- | -------- |
+| en      | zh_cn    | zh_tw    |
+
+</RouteEn>
+
+## Hong Kong Department of Health
+
+### Press Release
+
+<RouteEn author="nczitzk" example="/hongkong/dh" path="/hongkong/dh/:language?" :paramsDesc="['Language, see below, tc_chi by default']">
+
+Language
+
+| English | 中文简体 | 中文繁體 |
+| ------- | -------- | -------- |
+| english | chs | tc_chi |
+
+</RouteEn>
+
 ## Hong Kong Independent Commission Against Corruption
 
 ### Press Releases

@@ -103,6 +103,12 @@ pageClass: routes
 
 <Route author="nczitzk" example="/fgo/news" path="/fgo/news"/>
 
+## GameApps.hk 香港手机游戏网
+
+### 最新消息
+
+<Route author="TonyRL" example="/gameapps" path="/gameapps"/>
+
 ## GameRes 游资网
 
 ### 热点推荐
@@ -539,6 +545,10 @@ Example：`https://www.iyingdi.com/tz/people/55547` ，id 是 `55547`
 
 <Route author="Astrian" example="/arknights/news" path="/arknights/news"/>
 
+### アークナイツ (日服新闻)
+
+<Route author="ofyark" example="/arknights/japan" path="/arknights/japan"/>
+
 ### 塞壬唱片
 
 <Route author="rikkablue" example="/siren/news" path="/siren/news"/>
@@ -551,7 +561,7 @@ Example：`https://www.iyingdi.com/tz/people/55547` ，id 是 `55547`
 
 ## 少女前线
 
-### 新闻
+### 情报局
 
 <Route author="nczitzk" example="/gf-cn/news" path="/gf-cn/news/:category?" :paramsDesc="['分类，见下表，默认为新闻']">
 
@@ -718,6 +728,10 @@ Example：`https://www.iyingdi.com/tz/people/55547` ，id 是 `55547`
 ### 推荐
 
 <Route author="alizeegod" example="/lolapp/recommend" path="/lolapp/recommend"/>
+
+### 用户文章
+
+<Route author="ztmzzz" example="/lolapp/article/ee97e19c-4a64-4637-b916-b9ee23744d1f" path="/lolapp/article/:uuid" :paramsDesc="['用户UUID,可在文章html中获取']"/>
 
 ## 最终幻想 14
 
