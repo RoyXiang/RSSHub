@@ -5,15 +5,16 @@ LABEL MAINTAINER https://github.com/DIYgod/RSSHub/
 RUN ln -sf /bin/bash /bin/sh
 
 RUN apt-get update \
-    && apt-get install -yq libgconf-2-4 apt-transport-https git dumb-init python3 build-essential --no-install-recommends \
-    && npm i -g npm \
-    && npm update -g corepack
+    && apt-get install -yq libgconf-2-4 apt-transport-https git dumb-init python3 build-essential --no-install-recommends
 
 WORKDIR /app
 
 COPY package.json yarn.lock /app/
 
-RUN export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true && yarn
+RUN export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    && npm i -g npm \
+    && npm update -g corepack \
+    && yarn
 
 COPY . /app
 
