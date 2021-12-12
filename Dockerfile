@@ -1,6 +1,8 @@
 FROM node:14-buster-slim as dep-builder
 
-LABEL MAINTAINER https://github.com/DIYgod/RSSHub/
+LABEL \
+    "com.dokku.app-name"="rsshub" \
+    "MAINTAINER"="https://github.com/DIYgod/RSSHub/"
 
 RUN ln -sf /bin/bash /bin/sh
 
