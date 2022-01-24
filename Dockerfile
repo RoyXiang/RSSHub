@@ -16,7 +16,7 @@ COPY package.json yarn.lock /app/
 RUN export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     && npm i -g npm \
     && npm update -g corepack \
-    && yarn
+    && yarn --network-timeout 1000000
 
 COPY . /app
 
