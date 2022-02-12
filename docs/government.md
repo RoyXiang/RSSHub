@@ -20,7 +20,7 @@ pageClass: routes
 
 ### 最新消息
 
-<Route author="Fatpandac" exmaple="/ssm/news" path="/ssm/news"/>
+<Route author="Fatpandac" example="/ssm/news" path="/ssm/news"/>
 
 ## 北京市科学技术委员会、中关村科技园区管理委员会
 
@@ -127,6 +127,12 @@ pageClass: routes
 |   tzgg   |   bmxx   |   cjxx   |   hgbz   |    hgrygs    |     zsff     |
 
 </Route>
+
+### 惠州市人民政府
+
+#### 政务公开
+
+<Route author="Fatpandac" example="/gov/huizhou/zwgk/jgdt" path="/gov/huizhou/zwgk/:category?" :paramsDesc="['资讯类别，可以从网址中得到，默认为政务要闻']"/>
 
 ## 国家税务总局
 
@@ -274,11 +280,15 @@ pageClass: routes
 
 <Route author="sgqy" example="/go.jp/mofa" path="/go.jp/mofa"/>
 
-## 上海市职业能力考试院
+## 上海市人民政府
 
-### 考试项目
+### 上海市职业能力考试院 考试项目
 
 <Route author="Fatpandac" example="/gov/shanghai/rsj/ksxm" path="/gov/shanghai/rsj/ksxm"/>
+
+### 上海卫健委 疫情通报
+
+<Route author="zcf0508" example="/gov/shanghai/wsjkw/yqtb" path="/gov/shanghai/wsjkw/yqtb"/>
 
 ## 世界贸易组织
 

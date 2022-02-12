@@ -254,7 +254,7 @@ pageClass: routes
 
 ### Today Popular
 
-<Route author="miaoyafeng" example="/producthunt/today" path="/producthunt/today">
+<Route author="miaoyafeng Fatpandac" example="/producthunt/today" path="/producthunt/today">
 </Route>
 
 ## SANS Institute
@@ -326,7 +326,7 @@ type 为 all 时，category 参数不支持 cost 和 free
 
 ### 产业研究报告
 
-<Route author="brilon" example="/iresearch/report" path="/iresearch/report"/>
+<Route author="brilon Fatpandac" example="/iresearch/report" path="/iresearch/report"/>
 
 ## 爱 Q 生活网
 

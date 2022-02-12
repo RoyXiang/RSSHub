@@ -5,9 +5,7 @@ LABEL \
     "MAINTAINER"="https://github.com/DIYgod/RSSHub/"
 
 RUN ln -sf /bin/bash /bin/sh
-
-RUN apt-get update \
-    && apt-get install -yq libgconf-2-4 apt-transport-https git dumb-init python3 build-essential --no-install-recommends
+RUN apt-get update && apt-get install -yq libgconf-2-4 apt-transport-https git dumb-init python3 build-essential --no-install-recommends
 
 WORKDIR /app
 
@@ -16,11 +14,11 @@ COPY package.json yarn.lock /app/
 RUN export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     && npm i -g npm \
     && npm update -g corepack \
-    && yarn --network-timeout 1000000
+    && yarn --frozen-lockfile --network-timeout 1000000
 
 COPY . /app
-
 RUN node scripts/docker/minify-docker.js
+
 
 FROM node:14-slim as app
 

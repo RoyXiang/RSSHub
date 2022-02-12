@@ -15,8 +15,10 @@ tmp
 *.iml
 coverage
 .env
-app-minimal/
 .envrc
+app-minimal/
+Session.vim
+
 .now
 .vercel
 

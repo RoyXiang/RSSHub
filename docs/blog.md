@@ -90,6 +90,43 @@ pageClass: routes
 
 <Route author="CitrusIce" example="/phrack" path="/phrack" />
 
+## PolkaWorld
+
+### 最新资讯
+
+<Route author="iceqing" example="/polkaworld/newest" path="/polkaworld/newest"/>
+
+::: tip 提示
+
+在路由末尾处加上 `?limit=限制获取数目` 来限制获取条目数量，默认值为`10`.
+
+:::
+
+## Whoscall
+
+### 最新文章
+
+<Route author="nczitzk" example="/whoscall" path="/whoscall"/>
+
+### 分類
+
+<Route author="nczitzk" example="/whoscall/categories/5-Whoscall 百科" path="/whoscall/categories/:category?" :paramsDesc="['分类，见下表，可在对应分類页 URL 中找到，默认为最新文章']">
+
+| News   | Whoscall 百科   | 防詐小學堂     | Whoscall 日常   |
+| ------ | --------------- | -------------- | --------------- |
+| 1-News | 5-Whoscall 百科 | 4 - 防詐小學堂 | 6-Whoscall 日常 |
+
+</Route>
+
+### 標籤
+
+<Route author="nczitzk" example="/whoscall/tags/whoscall小百科" path="/whoscall/tags/:tag?" :paramsDesc="['標籤，见下表，可在对应標籤页 URL 中找到，默认为最新文章']">
+
+| 防疫也防詐 | 防詐專家 | 來電辨識 | whoscall 日常 |
+| ---------- | -------- | -------- | ------------- |
+
+</Route>
+
 ## WordPress
 
 <Route author="Lonor" example="/blogs/wordpress/lawrence.code.blog" path="/blogs/wordpress/:domain/:https?" :paramsDesc="['WordPress 博客域名', '默认 https 协议。填写 `http`或`https`']"/>
