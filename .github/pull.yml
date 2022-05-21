@@ -3,3 +3,6 @@ rules:
   - base: master
     upstream: DIYgod:master
     mergeMethod: hardreset
+  - base: dokku
+    upstream: DIYgod:master
+    mergeMethod: merge

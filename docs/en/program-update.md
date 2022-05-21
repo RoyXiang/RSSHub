@@ -70,6 +70,8 @@ Software id
 
 Language
 
+| Language | key |
+| -------- | --- |
 | English | en |
 | 中文 (简体) | cn |
 | 中文 (繁體) | tw |
@@ -305,6 +307,12 @@ Refer to [#minecraft](/en/game.html#minecraft)
 
 </RouteEn>
 
+## qBittorrent
+
+### News
+
+<RouteEn author="TonyRL" example="/qbittorrent/news" path="/qbittorrent/news" radar="1" rssbud="1"/>
+
 ## QNAP
 
 ### Release Notes
@@ -396,3 +404,9 @@ Refer to [#minecraft](/en/game.html#minecraft)
 ### What's New
 
 <RouteEn author="nczitzk" example="/xyplorer/whatsnew" path="/xyplorer/whatsnew"/>
+
+## Zotero
+
+### Version History
+
+<RouteEn author="jasongzy" example="/zotero/versions" path="/zotero/versions"/>
