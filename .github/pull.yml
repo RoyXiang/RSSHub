@@ -6,3 +6,4 @@ rules:
   - base: dokku
     upstream: DIYgod:master
     mergeMethod: merge
+    mergeUnstable: true # prevent non-pass tests from preventing automatic merge
