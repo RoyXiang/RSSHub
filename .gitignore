@@ -17,6 +17,7 @@ coverage
 .env
 .envrc
 app-minimal/
+dump.rdb
 Session.vim
 
 .now

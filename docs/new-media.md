@@ -1520,6 +1520,12 @@ Supported sub-sites:
 
 <Route author="Fatpandac" example="/chaping/newsflash" path="/chaping/newsflash"/>
 
+## 产品沉思录
+
+### 首页
+
+<Route author="nczitzk" example="/pmthinking" path="/pmthinking" />
+
 ## 城农 Growin' City
 
 ### 城农资讯观点
@@ -2180,6 +2186,14 @@ others = 热点新闻 + 滚动新闻
 ### 「108 将」实战分享
 
 <Route author="nczitzk" example="/jiazhen108" path="/jiazhen108" />
+
+## 健康界
+
+### 首页
+
+<Route author="qnloft" example="/cn-healthcare/index" path="/cn-healthcare/index" />
+
+</Route>
 
 ## 今日热榜
 
@@ -4062,4 +4076,4 @@ QueryString:
 | ---- | ----- | ----- |
 |      | zh-hk | zh-tw |
 
-</Route>
+ </Route>
