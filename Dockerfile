@@ -1,28 +1,14 @@
-FROM node:16-bullseye-slim as dep-builder
-
-# bash has already been the default shell
-#RUN ln -sf /bin/bash /bin/sh
-
-# these deps are no longer needed since we use yarn instead of npm to install dependencies
-# the installation of dumb-init has been moved to the app stage to improve concurrency and speed up builds on arm/arm64
-#RUN \
-#    set -ex && \
-#    apt-get update && \
-#    apt-get install -yq --no-install-recommends \
-#        libgconf-2-4 apt-transport-https git dumb-init python3 build-essential \
-#    && \
-#    rm -rf /var/lib/apt/lists/*
+FROM node:16-bullseye as dep-builder
+# Here we use the non-slim image to provide build-time deps (compilers and python), thus no need to install later.
+# This effectively speeds up qemu-based cross-build.
 
 WORKDIR /app
 
 # place ARG statement before RUN statement which need it to avoid cache miss
 ARG USE_CHINA_NPM_REGISTRY=0
+ARG TARGETPLATFORM
 RUN \
     set -ex && \
-    apt-get update && \
-    apt-get install -yq --no-install-recommends \
-        build-essential python3 \
-    ; \
     if [ "$USE_CHINA_NPM_REGISTRY" = 1 ]; then \
         echo 'use npm mirror' && \
         npm config set registry https://registry.npmmirror.com && \
@@ -31,6 +17,15 @@ RUN \
 
 COPY ./yarn.lock /app/
 COPY ./package.json /app/
+
+# required for building canvas in arm64 and arm/v7 (introduce in #10954)
+RUN \
+    set -ex && \
+    if [ "$TARGETPLATFORM" != "linux/amd64" ]; then \
+        apt-get update && \
+        apt-get install -yq --no-install-recommends \
+            libpango1.0-dev ; \
+    fi;
 
 # lazy install Chromium to avoid cache miss, only install production dependencies to minimize the image size
 RUN \
@@ -151,7 +146,7 @@ RUN \
             ; \
         else \
             apt-get install -yq --no-install-recommends \
-                chromium \
+                chromium librsvg2-2 \
             && \
             echo 'CHROMIUM_EXECUTABLE_PATH=chromium' | tee /app/.env ; \
         fi; \
