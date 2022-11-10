@@ -71,6 +71,12 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             git:from-image ${{ secrets.DOKKU_APP }} ${{ fromJson(needs.docker.outputs.meta).tags[1] }}
+
+  sentry:
+    name: Create Sentry release
+    needs: dokku
+    runs-on: ubuntu-latest
+    steps:
       -
         name: Checkout
         uses: actions/checkout@v3
