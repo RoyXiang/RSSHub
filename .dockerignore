@@ -1,9 +1,8 @@
-.github
+.github/**
 .idea
 .vscode
 Dockerfile*
 LICENSE
-Procfile
 app-minimal
 assets
 coverage
@@ -19,7 +18,6 @@ test
 .prettier*
 .(yarn|npm|nvm)rc
 *.md
-app.json
 docker-compose*
 jsconfig.json
 npm-debug.log
