@@ -71,6 +71,8 @@ jobs:
     name: Deploy to dokku host
     needs: docker
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ needs.docker.outputs.version }}
     steps:
       -
         name: Set git hash
@@ -105,4 +107,4 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
-          version: ${{ needs.docker.outputs.version }}
+          version: ${{ needs.dokku.outputs.version }}
