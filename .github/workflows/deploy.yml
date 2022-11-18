@@ -24,7 +24,16 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       meta: ${{ steps.meta.outputs.json }}
+      version: ${{ steps.version.outputs.version }}
     steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Get current version
+        id: version
+        run: |
+          echo "version=sha-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       -
         name: Docker meta
         id: meta
@@ -51,6 +60,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -70,7 +80,7 @@ jobs:
           username: dokku
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            config:set --no-restart ${{ secrets.DOKKU_APP }} HEROKU_SLUG_COMMIT=${{ github.sha }}
+            config:set --no-restart ${{ secrets.DOKKU_APP }} HEROKU_SLUG_COMMIT=${{ github.sha }} SENTRY_RELEASE=${{ needs.docker.outputs.version }}
       -
         name: Build app
         uses: appleboy/ssh-action@v0.1.5
@@ -87,16 +97,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      -
-        name: Get version
-        id: version
-        run: |
-          echo "version=sha-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-      -
         name: Create Sentry release
         uses: getsentry/action-release@v1
         env:
@@ -105,4 +105,4 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
-          version: ${{ steps.version.outputs.version }}
+          version: ${{ needs.docker.outputs.version }}
