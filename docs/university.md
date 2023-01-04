@@ -32,11 +32,23 @@ pageClass: routes
 
 <Route author="exuanbo" example="/polimi/news" path="/polimi/news/:language?" :paramsDesc="['English language code en']" />
 
-## UTDallas
+## University of Texas at Dallas
 
 ### International Student Services
 
 <Route author="Chang4Tech" example="/utdallas/isso" path="/utdallas/isso" />
+
+## University of Washington
+
+### Global Innovation Exchange News
+
+<Route author="dykderrick" example="/uw/gix/news/blog" path="/uw/gix/news/:category" :paramsDesc="['Blog Type']">
+
+| Blog | In The News |
+| ---- | ----------- |
+| blog | inthenews   |
+
+</Route>
 
 ## 安徽工业大学
 
@@ -2196,6 +2208,12 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 
 </Route>
 
+## 齐鲁工业大学
+
+### 通知公告
+
+<Route author="SunBK201" example="/qlu/notice" path="/qlu/notice" radar="1" />
+
 ## 清华大学
 
 ### 清华大学校内信息发布平台
@@ -2340,7 +2358,7 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 
 ### 官网信息
 
-<Route author="simonsmh" example="/shmtu/www/events" path="/shmtu/www/:type" :paramsDesc="['类型名称']"/>
+<Route author="imbytecat simonsmh" example="/shmtu/www/events" path="/shmtu/www/:type" :paramsDesc="['类型名称']"/>
 
 | 学术讲座   | 通知公告  |
 | ------ | ----- |
@@ -2348,11 +2366,19 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 
 ### 教务信息
 
-<Route author="simonsmh" example="/shmtu/jwc/jwgg" path="/shmtu/jwc/:type" :paramsDesc="['类型名称']"/>
+<Route author="imbytecat simonsmh" example="/shmtu/jwc/jwgg" path="/shmtu/jwc/:type" :paramsDesc="['类型名称']"/>
 
 | 教务公告 | 教务新闻 |
 | ---- | ---- |
 | jwgg | jwxw |
+
+### 数字平台
+
+<Route author="imbytecat" example="/shmtu/portal/bmtzgg" path="/shmtu/portal/:type" :paramsDesc="['类型名称']"/>
+
+| 部门通知公告 | 学术与大型活动公告 | 部门动态 |
+| ------ | --------- | ---- |
+| bmtzgg | xsydxhdgg | bmdt |
 
 ## 上海海洋大学
 
