@@ -507,6 +507,16 @@ pageClass: routes
 
 </Route>
 
+## 丁香园
+
+### 专题
+
+<Route author="TonyRL" example="/dxy/bbs/special/72" path="/dxy/bbs/special/:specialId" :paramsDesc="['专题 ID，可在对应专题页 URL 中找到']" radar="1"/>
+
+### 个人帖子
+
+<Route author="TonyRL" example="/dxy/bbs/profile/thread/8335054" path="/dxy/bbs/profile/thread/:userId" :paramsDesc="['个人 ID，可在 URL 中找到']" radar="1"/>
+
 ## 斗鱼
 
 ### 鱼吧帖子
@@ -527,7 +537,7 @@ pageClass: routes
 
 ### 板块
 
-<Route author="nczitzk" example="/right/forum/31" path="/right/forum/:id?" :paramsDesc="['板块 id，可在板块页 URL 中找到']"/>
+<Route author="nczitzk" example="/right/forum/31" path="/right/forum/:id?" :paramsDesc="['板块 id，可在板块页 URL 中找到，默认为新手入门及其它(硬件)']"/>
 
 ## 二次元虫洞
 

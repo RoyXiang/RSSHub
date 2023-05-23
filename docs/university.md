@@ -238,9 +238,9 @@ pageClass: routes
 
 <Route author="yanbot-team" example="/ustb/yzxc/tzgg" path="/ustb/yzxc/tzgg" />
 
-### 北京科技大学天津学院
+### 天津学院
 
-<Route author="henbf" example="/ustb/tj/news/all" path="/ustb/tj/news/:type" :paramsDesc="['默认为 `all`']">
+<Route author="henbf" example="/ustb/tj/news/all" path="/ustb/tj/news/:type?" :paramsDesc="['默认为 `all`']">
 
 | 全部 | 学院新闻 | 学术活动 | 城市建设学院 | 信息工程学院 | 经济学院 | 管理学院 | 材料系 | 机械工程系 | 护理系 | 法律系 | 外语系 | 艺术系 |
 | ---- | -------- | -------- | ------------ | ------------ | -------- | -------- | ------ | ---------- | ------ | ------ | ------ | ------ |
@@ -361,6 +361,12 @@ pageClass: routes
 ::: warning 注意
 由于学校官网对非大陆 IP 的访问存在限制，需自行部署。
 :::
+
+## 北京协和医学院
+
+### “4+4” 试点班招生网通知公告
+
+<Route author="nczitzk" example="/pumc/mdadmission" path="/pumc/mdadmission"/>
 
 ## 北京邮电大学
 
@@ -1424,6 +1430,12 @@ category 列表：
 jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS_REJECT_UNAUTHORIZED = 0
 :::
 
+## 湖南大学
+
+### 校园招聘
+
+<Route author="ningyougan" example="/hnu/careers" path="/hnu/careers"/>
+
 ## 湖南科技大学
 
 ### 教务处通知
@@ -2404,6 +2416,24 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 
 </Route>
 
+## 山东科技大学
+
+### 研究生招生网
+
+<Route author="nczitzk" example="/sdust/yjsy/zhaosheng" path="/sdust/yjsy/zhaosheng/:id?" :paramsDesc="['栏目 id，见下表，默认为通知公告']">
+
+栏目
+
+| 招生简章 | 专业目录 | 往届录取 | 管理规定 | 资料下载 |
+| -------- | -------- | -------- | -------- | -------- |
+| zsjz     | zyml     | wjlq     | glgd     | zlxz     |
+
+| 通知公告 | 博士招生 | 硕士招生 | 推免生招生 | 招生宣传 |
+| -------- | -------- | -------- | ---------- | -------- |
+| tzgg     | bszs     | sszs     | tms        | zsxc     |
+
+</Route>
+
 ## 上海大学
 
 ### 上海大学官网信息
@@ -2635,6 +2665,20 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 ### 学工部通知公告
 
 <Route author="stevelee477" example="/scu/xg/notice" path="/scu/xg/notice" />
+
+## 四川工商学院
+
+### 学院新闻
+
+<Route author="HyperCherry" example="/stbu/xyxw" path="/stbu/syxw" />
+
+### 计算机学院通知公告
+
+<Route author="HyperCherry" example="/stbu/jsjxy" path="/stbu/jsjxy" />
+
+::: warning 注意
+计算机学院通知公告疑似禁止了非大陆 IP 访问，使用路由需要自行 [部署](https://docs.rsshub.app/install)。
+:::
 
 ## 四川旅游学院
 
@@ -3720,3 +3764,17 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 ### 数据科学与计算机学院动态
 
 <Route author="Neutrino3316 MegrezZhu nczitzk" example="/sysu/cse" path="/sysu/cse"/>
+
+### 粤港澳发展研究院
+
+<Route author="TonyRL" example="/sysu/ygafz" path="/sysu/ygafz/:type?" :paramsDesc="['分类，见下表，默认为 `notice`']" radar="1" puppeteer="1">
+
+| 人才招聘   | 人才培养      | 新闻动态 | 通知公告 | 专家观点 |
+| ---------- | ------------- | -------- | -------- | -------- |
+| jobopening | personnelplan | news     | notice   | opinion  |
+
+| 研究成果 | 研究论文 | 学术著作 | 形势政策 |
+| -------- | -------- | -------- | -------- |
+| results  | papers   | writings | policy   |
+
+</Route>

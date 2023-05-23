@@ -60,6 +60,16 @@ pageClass: routes
 
 </Route>
 
+### 基金项目管理平台
+
+<Route author="nczitzk" example="/bjsk/keti" path="/bjsk/keti/:id?" :paramsDesc="['分类 id，见下表，默认为通知公告']">
+
+| 通知公告                         | 资料下载                         |
+| -------------------------------- | -------------------------------- |
+| 402881027cbb8c6f017cbb8e17710002 | 2c908aee818e04f401818e08645c0002 |
+
+</Route>
+
 ## 北京市保障房中心有限公司
 
 ### 北京市共有产权住房租赁服务平台
@@ -1620,6 +1630,23 @@ pageClass: routes
 路径处填写对应页面 URL 中 `http://www.ccdi.gov.cn/` 后的字段。下面是一个例子。
 
 若订阅 [审查调查 > 中管干部 > 执纪审查](https://www.ccdi.gov.cn/scdcn/zggb/zjsc/) 则将对应页面 URL <https://www.ccdi.gov.cn/scdcn/zggb/zjsc/> 中 `http://www.ccdi.gov.cn/` 后的字段 `scdcn/zggb/zjsc` 作为路径填入。此时路由为 [`/gov/ccdi/scdcn/zggb/zjsc`](https://rsshub.app/gov/ccdi/scdcn/zggb/zjsc)
+
+:::
+
+</Route>
+
+## 中央网信办
+
+### 分类
+
+<Route author="drgnchan" example="/gov/cac/xxh" path="/gov/cac/:path+" :paramsDesc="['路径，比如xxh表示信息化']" radar='1'>
+
+::: tip 提示
+
+路径填写对应页面 URL 中间部分。例如：
+
+首页 > 权威发布 > 办公室发布： <http://www.cac.gov.cn/qwfb/bgsfb/A090302index_1.htm>
+此时，path 参数为：/qwfb/bgsfb
 
 :::
 

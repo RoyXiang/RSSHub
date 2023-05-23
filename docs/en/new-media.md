@@ -162,6 +162,12 @@ Category of news
 
 <RouteEn author="nczitzk" example="/dayone/blog" path="/dayone/blog"/>
 
+## Deadline
+
+### Latest Article
+
+<RouteEn author="TonyRL" example="/deadline" path="/deadline" radar="1"/>
+
 ## DeepMind
 
 ### Blog
@@ -570,6 +576,10 @@ This route provides a flexible plan with full text content to subscribe specific
 
 <RouteEn author="ETiV" example="/openai/chatgpt/release-notes" path="/openai/chatgpt/release-notes" />
 
+### Research
+
+<RouteEn author="yuguorui" example="/openai/research" path="/openai/research" />
+
 ## Phoronix
 
 ### News & Reviews
@@ -606,12 +616,6 @@ Compared to the official one, this feed:
 | fr       | en      | es      | zh-hans  | zh-hant  | ar      | pa     | tl      |
 
 </RouteEn>
-
-## RSS3
-
-### Blog
-
-<RouteEn author="nczitzk" example="/rss3/blog" path="/rss3/blog"/>
 
 ## Sakamichi Series
 
@@ -767,6 +771,16 @@ Compared to the official one, this feed:
 ### News
 
 <RouteEn author="NavePnow" example="/techcrunch/news" path="/techcrunch/news"/>
+
+## TechPowerUp
+
+### Latest Content
+
+<RouteEn author="TonyRL" example="/techpowerup" path="/techpowerup" radar="1" />
+
+### Reviews
+
+<RouteEn author="TonyRL" example="/techpowerup/review/4090" path="/techpowerup/review/:keyword?" :paramsDesc="['Search Keyword']" radar="1" />
 
 ## The Brain
 
