@@ -10506,7 +10506,7 @@ snapshots:
       parse5: 7.1.2
       parse5-htmlparser2-tree-adapter: 7.0.0
       parse5-parser-stream: 7.1.2
-      undici: 6.19.6
+      undici: 6.19.7
       whatwg-mimetype: 4.0.0
 
   chokidar@3.6.0:
