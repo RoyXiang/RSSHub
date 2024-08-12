@@ -16,14 +16,17 @@ export const route: Route = {
     maintainers: [],
     handler,
     url: 'bangumi.moe/',
+    example: '/bangumi/moe',
 };
 
 async function handler(ctx) {
     const isLatest = getSubPath(ctx) === '/moe';
     const rootUrl = 'https://bangumi.moe';
+    const invalidTag = 'invalid tag';
 
     let response;
-    let tag_id = [];
+    let tag_id: string[] = [];
+    let tag_names: string[] = [];
 
     if (isLatest) {
         const apiUrl = `${rootUrl}/api/torrent/latest`;
@@ -38,7 +41,7 @@ async function handler(ctx) {
 
         const params = getSubPath(ctx).split('/').slice(2);
 
-        tag_id = await Promise.all(
+        const tags = await Promise.all(
             params.map((param) =>
                 cache.tryGet(param, async () => {
                     const paramResponse = await got({
@@ -51,10 +54,12 @@ async function handler(ctx) {
                         },
                     });
 
-                    return paramResponse.data.found ? paramResponse.data.tag.map((tag) => tag._id)[0] : '';
+                    return paramResponse.data.found ? paramResponse.data.tag[0] : invalidTag;
                 })
             )
         );
+        tag_id = tags.map((tag) => (tag === invalidTag ? '' : tag._id)).filter((t) => t !== '');
+        tag_names = tags.map((tag) => (tag === invalidTag ? '' : tag.name)).filter((t) => t !== '');
 
         response = await got({
             method: 'post',
@@ -69,9 +74,10 @@ async function handler(ctx) {
         response.data.torrents?.slice(0, ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit')) : 30).map((item) => ({
             title: item.title,
             link: `${rootUrl}/torrent/${item._id}`,
+            guid: item.magnet,
             description: item.introduction,
             pubDate: parseDate(item.publish_time),
-            enclosure_url: item.magnet,
+            enclosure_url: `${rootUrl}/download/torrent/${item._id}/${encodeURIComponent(item.title)}.torrent`,
             enclosure_type: 'application/x-bittorrent',
             category: item.tag_ids,
         })) ?? [];
@@ -101,7 +107,7 @@ async function handler(ctx) {
     );
 
     return {
-        title: '萌番组 Bangumi Moe',
+        title: '萌番组 Bangumi Moe' + (tag_names.length === 0 ? '' : ' - ' + tag_names.map((n) => `[${n}]`).join('')),
         link: isLatest || items.length === 0 ? rootUrl : `${rootUrl}/search/${tag_id.join('+')}`,
         item: items,
         allowEmpty: true,
