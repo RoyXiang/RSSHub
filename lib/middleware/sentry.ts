@@ -7,6 +7,7 @@ import { getRouteNameFromPath } from '@/utils/helpers';
 if (config.sentry.dsn) {
     Sentry.init({
         dsn: config.sentry.dsn,
+        release: config.sentry.release,
     });
     Sentry.getCurrentScope().setTag('node_name', config.nodeName);
 

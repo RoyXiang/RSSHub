@@ -50,6 +50,7 @@ export type Config = {
     showLoggerTimestamp?: boolean;
     sentry: {
         dsn?: string;
+        release?: string;
         routeTimeout: number;
     };
     hotlink: {
@@ -415,6 +416,7 @@ const calculateValue = () => {
         showLoggerTimestamp: toBoolean(envs.SHOW_LOGGER_TIMESTAMP, false),
         sentry: {
             dsn: envs.SENTRY,
+            release: envs.SENTRY_RELEASE,
             routeTimeout: toInt(envs.SENTRY_ROUTE_TIMEOUT, 30000),
         },
         // feed config
