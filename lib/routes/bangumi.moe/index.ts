@@ -1,4 +1,3 @@
-import NotFoundError from '@/errors/types/not-found';
 import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
@@ -30,9 +29,11 @@ async function handler(ctx) {
     const { tags } = ctx.req.param();
     const isLatest = !tags;
     const rootUrl = 'https://bangumi.moe';
+    const invalidTag = 'invalid tag';
 
     let response;
-    let searchLink = rootUrl;
+    let tagIds: string[] = [];
+    let tagNames: string[] = [];
 
     if (isLatest) {
         const apiUrl = `${rootUrl}/api/torrent/latest`;
@@ -42,16 +43,36 @@ async function handler(ctx) {
             url: apiUrl,
         });
     } else {
+        const tagUrl = `${rootUrl}/api/tag/search`;
         const torrentUrl = `${rootUrl}/api/torrent/search`;
 
-        const tag_id = await searchTagIds(tags, rootUrl);
-        searchLink = `${rootUrl}/search/${tag_id.join('+')}`;
+        const params = tags.split('/');
+
+        const tagResults = await Promise.all(
+            params.map((param) =>
+                cache.tryGet(param, async () => {
+                    const paramResponse = await got({
+                        method: 'post',
+                        url: tagUrl,
+                        json: {
+                            name: decodeURIComponent(param),
+                            keywords: true,
+                            multi: true,
+                        },
+                    });
+
+                    return paramResponse.data.found ? paramResponse.data.tag[0] : invalidTag;
+                })
+            )
+        );
+        tagIds = tagResults.map((tag) => (tag === invalidTag ? '' : tag._id)).filter((t) => t !== '');
+        tagNames = tagResults.map((tag) => (tag === invalidTag ? '' : tag.name)).filter((t) => t !== '');
 
         response = await got({
             method: 'post',
             url: torrentUrl,
             json: {
-                tag_id,
+                tag_id: tagIds,
             },
         });
     }
@@ -60,9 +81,10 @@ async function handler(ctx) {
         response.data.torrents?.slice(0, getRouteLimit(ctx, 30)).map((item) => ({
             title: item.title,
             link: `${rootUrl}/torrent/${item._id}`,
+            guid: item.magnet,
             description: item.introduction,
             pubDate: parseDate(item.publish_time),
-            enclosure_url: item.magnet,
+            enclosure_url: `${rootUrl}/download/torrent/${item._id}/${encodeURIComponent(item.title)}.torrent`,
             enclosure_type: 'application/x-bittorrent',
             category: item.tag_ids,
         })) ?? [];
@@ -92,35 +114,9 @@ async function handler(ctx) {
     );
 
     return {
-        title: '萌番组 Bangumi Moe',
-        link: isLatest || items.length === 0 ? rootUrl : searchLink,
+        title: '萌番组 Bangumi Moe' + (tagNames.length === 0 ? '' : ' - ' + tagNames.map((n) => `[${n}]`).join('')),
+        link: isLatest || items.length === 0 ? rootUrl : `${rootUrl}/search/${tagIds.join('+')}`,
         item: items,
+        allowEmpty: true,
     };
-}
-
-async function searchTagIds(tags, rootUrl): Promise<string[]> {
-    const tagUrl = `${rootUrl}/api/tag/search`;
-
-    const tagIds = await Promise.all(
-        tags.split('/').map((param) =>
-            cache.tryGet(`bangumi.moe:tag:${param}`, async () => {
-                const paramResponse: { data: { found: boolean; tag: Array<{ _id: string }> } } = await got({
-                    method: 'post',
-                    url: tagUrl,
-                    json: {
-                        name: decodeURIComponent(param),
-                        keywords: true,
-                        multi: true,
-                    },
-                });
-
-                if (!paramResponse.data.found || !paramResponse.data.tag.length) {
-                    throw new NotFoundError(`Bangumi Moe tag "${param}" was not found. Use an existing tag from the official site.`);
-                }
-                return paramResponse.data.tag[0]._id;
-            })
-        )
-    );
-
-    return tagIds.toSorted((a, b) => a.localeCompare(b));
 }
