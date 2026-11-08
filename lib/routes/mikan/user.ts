@@ -1,7 +1,8 @@
-import { config } from '@/config';
-import { Data, DataItem, Route } from '@/types';
-import { Context } from 'hono';
+import type { Context } from 'hono';
 import Parser from 'rss-parser';
+
+import { config } from '@/config';
+import type { Data, DataItem, Route } from '@/types';
 
 export const route: Route = {
     path: ['/user/:token'],
@@ -37,12 +38,12 @@ async function handler(ctx: Context): Promise<Data> {
         },
     });
 
-    const token: string = ctx.req.param('token');
+    const token = ctx.req.param('token') ?? '';
     const feed = await parser.parseURL(`https://mikanani.me/RSS/MyBangumi?token=${encodeURI(token)}`);
 
     feed.items.map((item) => {
         const idx = item.link.lastIndexOf(':') + 1;
-        item.guid = `magnet:?xt=urn:btih:${item.link.substring(idx)}`;
+        item.guid = `magnet:?xt=urn:btih:${item.link.slice(idx)}`;
         item.pubDate = item.torrent.pubDate[0];
         item.enclosure_url = item.enclosure.url;
         item.enclosure_type = item.enclosure.type;

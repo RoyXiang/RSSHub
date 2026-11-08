@@ -1,9 +1,10 @@
-import { Data, DataItem, Route } from '@/types';
+import { load } from 'cheerio';
+import type { Context } from 'hono';
+
+import type { Data, DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
-import { load } from 'cheerio';
-import { Context } from 'hono';
 
 export const route: Route = {
     path: ['/team/:team/:keyword?', '/:keyword?'],
@@ -14,12 +15,12 @@ export const route: Route = {
     handler,
 };
 
-const baseUrl: string = 'https://share.dmhy.org';
-const dlUrl: string = 'https://dl.dmhy.org';
+const baseUrl = 'https://share.dmhy.org';
+const dlUrl = 'https://dl.dmhy.org';
 
 async function handler(ctx: Context): Promise<Data> {
     const { team, keyword } = ctx.req.param();
-    let pageUrl: string = `${baseUrl}/topics/list`;
+    let pageUrl = `${baseUrl}/topics/list`;
     if (team) {
         pageUrl += `/team_id/${encodeURIComponent(team)}`;
     }
@@ -42,9 +43,8 @@ async function handler(ctx: Context): Promise<Data> {
             const pubDate = parseDate(row.find('td:nth-child(1) > span').text());
             const month = pubDate.getMonth() + 1;
 
-            const pikpakUrl = new URL(row.find('td:nth-child(4) .download-pp').attr('href') as string);
-            const magnetUrl = pikpakUrl.searchParams.get('url');
-            const magnetHash = magnetUrl?.substring(magnetUrl?.lastIndexOf(':') + 1);
+            const magnetUrl = row.find('td:nth-child(4) .download-xl').attr('data-magnet') || decodeURIComponent(row.find('td:nth-child(4) .download-pp').attr('href') ?? '');
+            const magnetHash = magnetUrl.slice(magnetUrl.lastIndexOf(':') + 1);
 
             return {
                 title: title.text().trim(),
@@ -58,7 +58,7 @@ async function handler(ctx: Context): Promise<Data> {
             };
         });
 
-    let titleSuffix: string = '';
+    let titleSuffix = '';
     if (team && items.length > 0) {
         titleSuffix += ` [${items[0].author}]`;
     }
