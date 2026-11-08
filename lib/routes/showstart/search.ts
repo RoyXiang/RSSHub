@@ -1,13 +1,46 @@
-import { Data, Route } from '@/types';
-import { TITLE, HOST } from './const';
-import { fetchActivityList, fetchPerformerList, fetchSiteList, fetchBrandList, fetchCityList, fetchStyleList } from './service';
 import type { Context } from 'hono';
+
+import type { Data, Route } from '@/types';
+
+import { HOST, TITLE } from './const';
+import { fetchActivityList, fetchBrandList, fetchCityList, fetchPerformerList, fetchSiteList, fetchStyleList } from './service';
 
 export const route: Route = {
     path: '/search/:type/:keyword?',
     categories: ['shopping'],
     example: '/showstart/search/live',
-    parameters: { type: '类别', keyword: '搜索关键词' },
+    parameters: {
+        keyword: '搜索关键词',
+        type: {
+            description: '类别',
+            options: [
+                {
+                    value: 'event',
+                    label: '演出',
+                },
+                {
+                    value: 'artist',
+                    label: '音乐人',
+                },
+                {
+                    value: 'site',
+                    label: '场地',
+                },
+                {
+                    value: 'brand',
+                    label: '厂牌',
+                },
+                {
+                    value: 'city',
+                    label: '城市',
+                },
+                {
+                    value: 'style',
+                    label: '风格',
+                },
+            ],
+        },
+    },
     features: {
         requireConfig: false,
         requirePuppeteer: false,
